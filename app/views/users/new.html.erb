@@ -1,0 +1,21 @@
+<div id="new_container">
+  <div class="row">
+
+    <form class="log" action="<%= users_url %>" method="post">
+      <input type="hidden" name="authenticity_token" id="" value="<%= form_authenticity_token %>">
+
+      <label for="user_username">Username</label>
+      <input class="loginp" type="text" name="user[username]" id="user_username" value="">
+
+      <label for="user_password">Password</label>
+      <input class="loginp" type="password" name="user[password]" id="user_password" value="">
+
+      <input class="logbut hvr-shutter-out-horizontal" type="submit" value="submit"></input>
+    </form>
+
+
+    <h4 style="padding-left:10px">Please create a new account.
+      <a href="<%=new_session_url%>">Or Login</a>
+    </h4>
+  </div>
+</div>

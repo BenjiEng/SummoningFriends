@@ -1,0 +1,174 @@
+// Place all the styles related to the Users controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+body {
+  //background-image: url("/images/background.jpg");
+  background-color: black !important;
+}
+//Layout
+.search-input {
+  margin-top: 20px;
+  #search-name {
+    width: 85% !important;
+    color: #b9b9b9;
+    display: inline-block;
+  }
+  #search-region {
+    margin-top: 5px;
+  }
+  .find-friend {
+    font-size: 10px;
+    margin-right: 15px;
+    border-radius: 5px;
+    display: inline-block;
+    width: auto !important;
+  }
+}
+.status-box {
+  border: 1px solid white;
+  border-radius: 10px;
+  background: gray;
+  margin-top: 5px;
+  padding: 15px;
+  .search-status {
+    display: block;
+  }
+  #friend-icon {
+    margin-bottom: 15px;
+    display: inline-block;
+  }
+  .search-friend-stats {
+    display: inline-block;
+    vertical-align: middle;
+  }
+}
+.friend-details {
+  font-weight: 900;
+}
+.status-details {
+  font-weight: 900;
+  color: green;
+}
+
+//Shared
+#friend-icon {
+  margin-bottom: 15px;
+  display: inline-block;
+}
+.tier-icon {
+  height: 60px;
+  width: 60px;
+  &#BRONZE {
+    background-image: image-url("/images/tiers/base_icons/bronze.png");
+    background-size: 60px;
+  }
+  &#SILVER {
+    background-image: image-url("/images/tiers/base_icons/silver.png");
+    background-size: 60px;
+  }
+  &#GOLD {
+    background-image: image-url("/images/tiers/base_icons/gold.png");
+    background-size: 60px;
+  }
+  &#PLATINUM {
+    background-image: image-url("/images/tiers/base_icons/platinum.png");
+    background-size: 60px;
+  }
+  &#DIAMOND {
+    background-image: image-url("/images/tiers/base_icons/diamond.png");
+    background-size: 60px;
+  }
+  &#CHALLENGER {
+    background-image: image-url("/images/tiers/base_icons/challenger.png");
+    background-size: 60px;
+  }
+  &#MASTER {
+    background-image: image-url("/images/tiers/base_icons/master.png");
+    background-size: 60px;
+  }
+  &#PROVISIONAL {
+    background-image: image-url("/images/tiers/base_icons/provisional.png");
+    background-size: 60px;
+  }
+}
+
+//Add Friend Button
+.add-friend {
+  display: none;
+}
+
+//friends-tiles
+#friends-list {
+  padding-left: 0px !important;
+  .friend-tile {
+    margin: 5px;
+    color: white;
+    background: black;
+    border: 1px solid gray;
+    border-radius: 10px;
+    padding-right: 5px !important;
+    padding-top: 10px;
+    .avatar-icon {
+      border-radius: 100px;
+      display: inline-block;
+      padding: 0px 5px 5px 5px;
+    }
+    .categories {
+      display: inline-block;
+      .name {
+        color: #006699;
+        display: inline-block;
+        font-size: 18px;
+      }
+      .transform-text {
+        text-transform: lowercase;
+      }
+      .transform-text::first-letter {
+        text-transform: uppercase;
+      }
+    }
+    .last-game {
+
+    }
+    .delete-button {
+      top: 10px;
+      right: 5px;
+      position: absolute;
+      float: right;
+      cursor: pointer;
+      &:hover {
+        color: #8E2323;
+        border: 1px dotted #FFCCCC;
+        border-radius: 20px;
+      }
+    }
+    .delete-friend-backdrop {
+      position: absolute;
+      height: 100%;
+      width: 100%;
+      top: 0;
+      left: 0;
+      background-color: rgba(0,0,0,0.5);
+      z-index: 100;
+      padding: 30px;
+      .delete-friend-container {
+        position: relative;
+        background-color: white;
+        border: 1px solid black;
+        border-radius: 5px;
+        padding: 5px;
+        box-shadow:  2px 2px 2px 1px rgba(0, 0, 0, 0.2);
+        opacity: 1;
+        .delete-friend-content {
+          color: black;
+        }
+        button {
+          color: black;
+          border: 1px solid black;
+          box-shadow:  2px 2px 2px 1px rgba(0, 0, 0, 0.2);
+        }
+      }
+    }
+
+  }
+}

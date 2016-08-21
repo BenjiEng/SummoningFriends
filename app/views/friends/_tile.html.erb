@@ -1,0 +1,30 @@
+<div class="col-sm-12 friend-tile">
+
+  <i class="delete-button material-icons" data-toggle="collapse" data-target="#delete-friend-<%=friend.id%>">cancel</i>
+
+  <img class="avatar-icon pull-left" src="http://ddragon.leagueoflegends.com/cdn/6.10.1/img/profileicon/<%=friend.summoner_icon_id%>.png">
+  <div class="categories col-sm-7">
+    <div><b class="name"><%=friend.summoner_name%></b></div>
+    <div><b>Tier:</b> <div class="tier-icon" id='<%=friend.tier%>' style="display: inline-block; vertical-align: middle;"></div>
+    <div><b>ID#:</b> <%=friend.summoner_id%></div>
+    <div><b>Level:</b> <%=friend.summoner_level%></div>
+    <div><b>Revision Date:</b> <%=friend.revision_date%></div>
+  </div>
+  <br>
+
+  <div class="last-game" class="col-sm-12">
+
+  </div>
+
+  <div class="delete-friend-backdrop collapse" id="delete-friend-<%=friend.id%>">
+    <div class="delete-friend-container">
+      <div class="delete-friend-content">
+        Are you sure you want to delete your friend?
+        <br>
+      </div>
+      <button class="btn btn-danger" onclick="deleteFriend('<%=friend.id%>')">Yes</button>
+      <button class="btn btn-info" data-toggle="collapse" data-target="#delete-friend-<%=friend.id%>">No</button>
+    </div>
+  </div>
+
+</div>
