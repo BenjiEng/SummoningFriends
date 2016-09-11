@@ -1,8 +1,9 @@
 <div class="col-sm-12" id="friends-list">
-
-  <h1 class="col-sm-12">Your Friends:</h1>
-  <% @friends.each do |friend| %>
-      <%= render '/friends/tile', :friend => friend %>
+<h1 class="col-sm-12">Your Friends:</h1>
+  <% if current_user %>
+    <% @friends.each do |friend| %>
+        <%= render '/friends/tile', :friend => friend %>
+    <% end %>
   <% end %>
 
 </div>

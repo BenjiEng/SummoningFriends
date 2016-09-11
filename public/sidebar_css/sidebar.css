@@ -1,3 +1,6 @@
+/* Login stuff */
+
+
 /* Toggle Styles */
 .aligner {
   display: flex;
@@ -64,6 +67,25 @@
 .sign-in {
   position: fixed;;
   bottom: 1px;
+}
+
+.sign-in .log-in {
+  font-size: 10px;
+  line-height: 1;
+  display: block;
+}
+
+.sign-in .log-in input {
+  width: 95px;
+}
+
+.sign-in .log-in .submit-button {
+  margin-top: 5px;
+  width: 45px;
+}
+
+.sign-in label {
+  display: block;
 }
 
 .sidebar-nav li a {

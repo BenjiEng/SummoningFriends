@@ -5,6 +5,7 @@ body {
   //background-image: url("/images/background.jpg");
   background-color: black !important;
 }
+
 //Layout
 .search-input {
   margin-top: 20px;
@@ -58,31 +59,111 @@ body {
 .tier-icon {
   height: 60px;
   width: 60px;
-  &#BRONZE {
-    background-image: image-url("/images/tiers/base_icons/bronze.png");
+  &#BRONZEV {
+    background-image: image-url("/images/tiers/tier_icons/bronze_v.png");
     background-size: 60px;
   }
-  &#SILVER {
-    background-image: image-url("/images/tiers/base_icons/silver.png");
+  &#BRONZEIV {
+    background-image: image-url("/images/tiers/tier_icons/bronze_iv.png");
     background-size: 60px;
   }
-  &#GOLD {
-    background-image: image-url("/images/tiers/base_icons/gold.png");
+  &#BRONZEIII {
+    background-image: image-url("/images/tiers/tier_icons/bronze_iii.png");
     background-size: 60px;
   }
-  &#PLATINUM {
-    background-image: image-url("/images/tiers/base_icons/platinum.png");
+  &#BRONZEII {
+    background-image: image-url("/images/tiers/tier_icons/bronze_ii.png");
     background-size: 60px;
   }
-  &#DIAMOND {
-    background-image: image-url("/images/tiers/base_icons/diamond.png");
+  &#BRONZEI {
+    background-image: image-url("/images/tiers/tier_icons/bronze_i.png");
     background-size: 60px;
   }
-  &#CHALLENGER {
+  &#SILVERV {
+    background-image: image-url("/images/tiers/tier_icons/silver_v.png");
+    background-size: 60px;
+  }
+  &#SILVERIV {
+    background-image: image-url("/images/tiers/tier_icons/silver_iv.png");
+    background-size: 60px;
+  }
+  &#SILVERIII {
+    background-image: image-url("/images/tiers/tier_icons/silver_iii.png");
+    background-size: 60px;
+  }
+  &#SILVERII {
+    background-image: image-url("/images/tiers/tier_icons/silver_ii.png");
+    background-size: 60px;
+  }
+  &#SILVERI {
+    background-image: image-url("/images/tiers/tier_icons/silver_i.png");
+    background-size: 60px;
+  }
+  &#GOLDV {
+    background-image: image-url("/images/tiers/tier_icons/gold_v.png");
+    background-size: 60px;
+  }
+  &#GOLDIV {
+    background-image: image-url("/images/tiers/tier_icons/gold_iv.png");
+    background-size: 60px;
+  }
+  &#GOLDIII {
+    background-image: image-url("/images/tiers/tier_icons/gold_iii.png");
+    background-size: 60px;
+  }
+  &#GOLDII {
+    background-image: image-url("/images/tiers/tier_icons/gold_ii.png");
+    background-size: 60px;
+  }
+  &#GOLDI {
+    background-image: image-url("/images/tiers/tier_icons/gold_i.png");
+    background-size: 60px;
+  }
+  &#PLATINUMV {
+    background-image: image-url("/images/tiers/tier_icons/platinum_v.png");
+    background-size: 60px;
+  }
+  &#PLATINUMIV {
+    background-image: image-url("/images/tiers/tier_icons/platinum_iv.png");
+    background-size: 60px;
+  }
+  &#PLATINUMIII {
+    background-image: image-url("/images/tiers/tier_icons/platinum_iii.png");
+    background-size: 60px;
+  }
+  &#PLATINUMII {
+    background-image: image-url("/images/tiers/tier_icons/platinum_ii.png");
+    background-size: 60px;
+  }
+  &#PLATINUMI {
+    background-image: image-url("/images/tiers/tier_icons/platinum_i.png");
+    background-size: 60px;
+  }
+  &#DIAMONDV {
+    background-image: image-url("/images/tiers/tier_icons/diamond_v.png");
+    background-size: 60px;
+  }
+  &#DIAMONDIV {
+    background-image: image-url("/images/tiers/tier_icons/diamond_iv.png");
+    background-size: 60px;
+  }
+  &#DIAMONDIII {
+    background-image: image-url("/images/tiers/tier_icons/diamond_iii.png");
+    background-size: 60px;
+  }
+  &#DIAMONDII {
+    background-image: image-url("/images/tiers/tier_icons/diamond_ii.png");
+    background-size: 60px;
+  }
+  &#DIAMONDI {
+    background-image: image-url("/images/tiers/tier_icons/diamond_i.png");
+    background-size: 60px;
+  }
+  &#CHALLENGERI {
     background-image: image-url("/images/tiers/base_icons/challenger.png");
     background-size: 60px;
   }
-  &#MASTER {
+  &#MASTERI {
     background-image: image-url("/images/tiers/base_icons/master.png");
     background-size: 60px;
   }
@@ -127,9 +208,6 @@ body {
         text-transform: uppercase;
       }
     }
-    .last-game {
-
-    }
     .delete-button {
       top: 10px;
       right: 5px;
@@ -170,5 +248,56 @@ body {
       }
     }
 
+    .last-game-container {
+      margin-top: 20px;
+    }
+
   }
+}
+
+//BUTTONS
+.submit-wrapper {
+    margin-top: 20px;
+}
+.submit-wrapper a {
+    border:2px solid #006699;
+    color:white;
+    padding:20px 25px;
+    text-decoration:none;
+    position:relative;
+    letter-spacing:8px;
+    transition:all 0.6s;
+    z-index:1;
+}
+.submit-wrapper a:before,
+.submit-wrapper a:after {
+    content:"";
+    position:absolute;
+    top:50%;
+    left:0;
+    width:24px;
+    height:4px;
+    background:#006699;
+    margin-left:-12px;
+    margin-top:-2px;
+    transition:all 0.6s;
+}
+.submit-wrapper a:after {
+    left:auto;
+    right:0;
+    margin-right:-12px;
+}
+.submit-wrapper a:hover:before,
+.submit-wrapper a:hover:after {
+    width:100%;
+    transition:all 0.6s;
+    background:#fff;
+    transform:scaleY(5);
+    z-index:-1;
+}
+.submit-wrapper a:hover {
+    text-decoration:none;
+    background:#006699;
+    transition:all 0.6s;
+    color:black;
 }

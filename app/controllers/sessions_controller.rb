@@ -2,9 +2,9 @@ class SessionsController < ApplicationController
   # before_action :require_signed_out!, only: [:new, :create]
   # before_action :require_signed_in!, only: [:destroy]
 
-  def new
-    render :new
-  end
+  # def new
+  #   render "/sessions/new"
+  # end
 
   def create
     @user = User.find_by_credentials(

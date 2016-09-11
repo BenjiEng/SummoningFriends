@@ -7,10 +7,11 @@
     summoner_icon_id: 0,
     revision_date: 0,
     summoner_level: 0,
-    tier: "unranked"
+    tier: "unranked",
+    division: ""
   };
 
-
+ //Inits the name input value listener
   var initNameListener = function(nameInput) {
     nameInput.focus(function () {
       if (nameInput.val() != "") {
@@ -35,11 +36,33 @@
     var region = $("#search-region").val().toLowerCase();
     var summonerName = $("#search-name").val();
 
-    self.riotAPICall(region, summonerName);
+    self.riotAPISummoner(region, summonerName);
   };
 
+  //On click of get last game method it calls the riotAPI method for recent games
+  var getLastGame = function (friendId, summonerId) {
+    var self = this;
+    self.riotAPILastGame(friendId, summonerId);
+  }
+
+  //update the champions in db
+  var updateChampions = function () {
+    var self = this;
+
+    $.ajax({
+      url: '/champions/',
+      type: 'POST',
+      success: function (data) {
+        alert("Successfully Updated")
+      },
+      error: function (textStatus, errorThrown) {
+        alert("Unsuccessful Update");
+      }
+    });
+  }
+
   //calls to the riotAPI and returns the summoner object or error
-  var riotAPICall = function(region, summonerName) {
+  var riotAPISummoner = function(region, summonerName) {
 
       $.ajax({
         name: summonerName.toLowerCase(),
@@ -83,8 +106,12 @@
       success: function(response) {
         var tier = response[id][0].tier
         emptyFriend.tier = tier;
-        debugger
-        $(".tier-icon").attr('id', tier);
+        if (tier !== "PROVISIONAL") {
+          var playerObject = $.grep(response[id][0].entries, function(e) { return e.playerOrTeamId == id.toString(); });
+          var division = playerObject[0].division;
+          emptyFriend.division = division
+        }
+        $(".tier-icon").attr('id', tier+division);
       },
       error: function(response) {
         $("#response-status").css({'color':'red'}).html("Incorrect Summoner Name or Region.").fadeIn(3000).fadeOut(3000);
@@ -92,27 +119,57 @@
     });
   }
 
-  var riotAPICallLastGame = function(summonerId) {
+  //calls to the riotAPI and returns the last game after saving
+  var riotAPILastGame = function(friendId, summonerId) {
     var self = this;
+    var team100Container = $(".team100-"+friendId);
+    var team200Container = $(".team200-"+friendId);
     var region = $("#search-region").find(":selected").val();
-
     $.ajax({
-      type: "GET",
-      url: "https://"+region+".api.pvp.net/api/lol/na/v1.3/game/by-summoner/"+summonerId+"/recent?api_key=5e9b0f51-4139-4c8a-bc4d-864cdefae73f",
-      dataType: 'json',
-      success: function(response) {
-        debugger
-        var lastGame = response.games[0];
+      type: "POST",
+      url: "/games",
+      dataType: "json",
+      data: {friend_id: friendId, summoner_id: summonerId},
+      success: function() {
 
-        //need to create a new model
-      },
-      error: function(response) {
-        debugger
-        // $("#response-status").css({'color':'red'}).html("Incorrect Summoner Name or Region.").fadeIn(3000).fadeOut(3000);
+      }, error: function() {
+
       }
     });
-  };
 
+    // $.ajax({
+    //   type: "GET",
+    //   url: "https://"+region+".api.pvp.net/api/lol/na/v1.3/game/by-summoner/"+summonerId+"/recent?api_key=5e9b0f51-4139-4c8a-bc4d-864cdefae73f",
+    //   dataType: 'json',
+    //   success: function(response) {
+    //     var lastGame = response.games[0];
+    //     var fellowPlayers = lastGame.fellowPlayers;
+    //     var team100 = [];
+    //     var team200 = [];
+    //
+    //     if (lastGame.teamId == 100) {
+    //       team100.push({championId: lastGame.championId, summonerId: summonerId, teamId: lastGame.teamId});
+    //       team100Container.append('<div class="player-container">'+ summonerId +'</div>');
+    //     } else {
+    //       team200.push({championId: lastGame.championId, summonerId: summonerId, teamId: lastGame.teamId});
+    //       team200Container.append('<div class="player-container">'+ summonerId +'</div>');
+    //     }
+    //
+    //     for (var i=0; i<fellowPlayers.length; i++) {
+    //       if (fellowPlayers[i].teamId == 100) {
+    //         team100.push(fellowPlayers[i]);
+    //         team100Container.append('<div class="player-container">'+ fellowPlayers[i].summonerId +'</div>');
+    //       } else {
+    //         team200.push(fellowPlayers[i]);
+    //         team200Container.append('<div class="player-container">'+ fellowPlayers[i].summonerId +'</div>');
+    //       }
+    //     }
+    //
+    //   }, error: function(response) {
+    //     // $("#response-status").css({'color':'red'}).html("Incorrect Summoner Name or Region.").fadeIn(3000).fadeOut(3000);
+    //   }
+    // });
+  };
 
   //AJAX post to controller to add friend to database
   var addFriend = function() {
@@ -128,11 +185,12 @@
                summoner_level: self.emptyFriend.summoner_level,
                revision_date: self.emptyFriend.revision_date,
                tier: self.emptyFriend.tier,
+               division: self.emptyFriend.division,
                user_id: 0}
             },
       success: function (data) {
         $("#friends-list").html(data);
-        riotAPICallLastGame(self.emptyFriend.summoner_id);
+        //riotAPICallLastGame(self.emptyFriend.summoner_id);
       },
       error: function (textStatus, errorThrown) {
         alert("error");
@@ -164,6 +222,7 @@
     emptyFriend.revision_date = 0;
     emptyFriend.summoner_level = 0;
     emptyFriend.tier = "";
+    emptyFriend.division = "";
   };
 
 // };
